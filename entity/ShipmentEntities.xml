@@ -37,6 +37,8 @@ along with this software (see the LICENSE.md file). If not, see
             field of the same name on ShipmentItemSource.</description></field>
         <field name="productStoreId" type="id"/>
 
+        <field name="priority" type="number-integer" default="5" enable-audit-log="update">
+            <description>Numeric priority, 1 to 9 where 1 is highest priority and 9 is lowest priority (like a to do list), defaults to 5</description></field>
         <field name="entryDate" type="date-time"/>
         <field name="shipAfterDate" type="date-time" enable-audit-log="update"/>
         <field name="shipBeforeDate" type="date-time" enable-audit-log="update"/>
@@ -203,7 +205,7 @@ along with this software (see the LICENSE.md file). If not, see
 
     <entity entity-name="ShipmentBoxType" package="mantle.shipment" cache="true">
         <field name="shipmentBoxTypeId" type="id" is-pk="true"/>
-        <field name="pseudoId" type="id" default="shipmentBoxTypeId"/>
+        <field name="pseudoId" type="text-short" default="shipmentBoxTypeId"/>
         <field name="description" type="text-medium"/>
         <field name="dimensionUomId" type="id"/>
         <field name="boxLength" type="number-decimal"/>
