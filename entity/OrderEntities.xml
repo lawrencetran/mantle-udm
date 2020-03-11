@@ -296,6 +296,10 @@ along with this software (see the LICENSE.md file). If not, see
         <!-- for future reference when configurable products are supported: <field name="productConfigSavedId" type="id"/> -->
         <field name="productFeatureId" type="id"/>
         <field name="otherPartyProductId" type="text-short"/>
+        <field name="productParameterSetId" type="id">
+            <description>For a set of Product Parameters to personalize a Product and/or record details specific to a purchase of the Product.
+                If used represents a distinct Product instance (OrderItem, etc records should not be combined unless matches).</description>
+        </field>
 
         <field name="itemDescription" type="text-medium"/>
         <field name="comments" type="text-medium"/>
@@ -358,6 +362,7 @@ along with this software (see the LICENSE.md file). If not, see
         <relationship type="one" related="mantle.product.Product" short-alias="product"/>
         <!-- <relationship type="one" related="mantle.product.config.ProductConfigSaved"/> -->
         <relationship type="one" related="mantle.product.feature.ProductFeature" short-alias="feature"/>
+        <relationship type="one" related="mantle.product.ProductParameterSet" short-alias="productParameterSet"/>
         <relationship type="one" title="Quantity" related="moqui.basic.Uom" short-alias="quantityUom">
             <key-map field-name="quantityUomId"/></relationship>
 
@@ -722,6 +727,7 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="responseImmediate" type="text-indicator"><description>Process response immediately (Y) or wait for returned inventory (N)</description></field>
         <field name="itemTypeEnumId" type="id"/>
         <field name="productId" type="id"/>
+        <field name="replacementProductId" type="id"/>
         <field name="description" type="text-medium"/>
         <field name="orderId" type="id"/>
         <field name="orderItemSeqId" type="id"/>
@@ -763,6 +769,8 @@ along with this software (see the LICENSE.md file). If not, see
         <relationship type="one" title="Inventory" related="moqui.basic.StatusItem" short-alias="inventoryStatus">
             <key-map field-name="inventoryStatusId"/></relationship>
         <relationship type="one" related="mantle.product.Product" short-alias="product"/>
+        <relationship type="one" title="Replacement" related="mantle.product.Product" short-alias="replacementProduct">
+            <key-map field-name="replacementProductId"/></relationship>
 
         <relationship type="one" title="Replacement" related="mantle.order.OrderHeader" short-alias="replacementOrder">
             <key-map field-name="replacementOrderId"/></relationship>
