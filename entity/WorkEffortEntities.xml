@@ -34,7 +34,7 @@ along with this software (see the LICENSE.md file). If not, see
         <relationship type="one" title="DeliverableType" related="moqui.basic.Enumeration">
             <key-map field-name="deliverableTypeEnumId"/></relationship>
     </entity>
-    <entity entity-name="WorkEffort" package="mantle.work.effort" short-alias="workEfforts" cache="never">
+    <entity entity-name="WorkEffort" package="mantle.work.effort" short-alias="workEfforts" cache="never" sequence-bank-size="10">
         <field name="workEffortId" type="id" is-pk="true"/>
         <field name="universalId" type="text-medium"/>
         <field name="sourceReferenceId" type="text-short"/>
@@ -257,7 +257,10 @@ along with this software (see the LICENSE.md file). If not, see
             <moqui.basic.StatusFlowTransition statusFlowId="WorkEffortOther" statusId="WeOnHold" toStatusId="WeClosed" transitionName="Close"/>
             <moqui.basic.StatusFlowTransition statusFlowId="WorkEffortOther" statusId="WeComplete" toStatusId="WeCancelled" transitionName="Cancel"/>
             <moqui.basic.StatusFlowTransition statusFlowId="WorkEffortOther" statusId="WeClosed" toStatusId="WeInProgress" transitionName="Re-open"/>
+            <moqui.basic.StatusFlowTransition statusFlowId="WorkEffortOther" statusId="WeClosed" toStatusId="WeComplete" transitionName="Complete"/>
             <moqui.basic.StatusFlowTransition statusFlowId="WorkEffortOther" statusId="WeCancelled" toStatusId="WeInProgress" transitionName="Re-open"/>
+            <moqui.basic.StatusFlowTransition statusFlowId="WorkEffortOther" statusId="WeCancelled" toStatusId="WeComplete" transitionName="Complete"/>
+            <moqui.basic.StatusFlowTransition statusFlowId="WorkEffortOther" statusId="WeCancelled" toStatusId="WeClosed" transitionName="Close"/>
 
             <!-- Work Effort Visibility -->
             <moqui.basic.EnumerationType description="Work Effort Visibility" enumTypeId="WorkEffortVisibility"/>
@@ -563,6 +566,7 @@ along with this software (see the LICENSE.md file). If not, see
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpProject" roleTypeId="DefaultAssignee"/>
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpProject" roleTypeId="Manager"/>
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpProject" roleTypeId="OrgTeam"/>
+            <mantle.party.RoleGroupMember roleGroupEnumId="RgpProject" roleTypeId="Watcher"/>
 
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpProject" roleTypeId="BusinessAnalyst"/>
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpProject" roleTypeId="ExpertUser"/>
